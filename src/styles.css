@@ -167,3 +167,25 @@
     color: var(--color-foreground);
   }
 }
+
+html { scroll-behavior: smooth; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; }
+.reveal.in-view { animation: fade-up 0.7s ease-out forwards; }
+
+@keyframes ripple-out {
+  0% { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+.ripple { position: relative; overflow: hidden; }
+.ripple-dot {
+  position: absolute; border-radius: 9999px;
+  background: currentColor; opacity: 0.35; pointer-events: none;
+  animation: ripple-out 0.6s ease-out forwards;
+}
+
+body { transition: background-color 0.4s ease, color 0.4s ease; }
