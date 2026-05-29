@@ -192,7 +192,7 @@ function Index() {
           <div className="grid md:grid-cols-2 gap-12">
             {CASES.map((c) => (
               <article key={c.title} className="group">
-                <div className="w-full aspect-video bg-white/5 outline-1 -outline-offset-1 outline-white/10 rounded-2xl overflow-hidden mb-6">
+                <div className="w-full aspect-video bg-white/5 dark:bg-[#27292E]/5 outline-1 -outline-offset-1 outline-white/10 dark:outline-[#27292E]/10 rounded-2xl overflow-hidden mb-6">
                   <img
                     src={c.image}
                     alt={c.title}
@@ -203,12 +203,12 @@ function Index() {
                   />
                 </div>
                 <h3 className="text-2xl font-bold mb-3">{c.title}</h3>
-                <p className="text-white/60 mb-6">{c.body}</p>
+                <p className="text-white/60 dark:text-[#27292E]/80 mb-6">{c.body}</p>
                 <div className="flex flex-wrap gap-2">
                   {c.tags.map((t) => (
                     <span
                       key={t}
-                      className="text-[10px] font-mono border border-white/20 px-2 py-1 rounded"
+                      className="text-[10px] font-mono border border-white/20 dark:border-[#27292E]/20 px-2 py-1 rounded"
                     >
                       {t}
                     </span>
