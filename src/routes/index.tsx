@@ -71,6 +71,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { theme, toggle } = useTheme();
+  useReveal();
   return (
     <div className="bg-brand-bg text-brand-primary font-sans antialiased min-h-screen">
       <nav className="sticky top-0 z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-primary/5 px-6 py-4">
@@ -78,14 +80,25 @@ function Index() {
           <a href="#top" className="font-mono font-bold tracking-tighter text-base sm:text-xl">
             STEPHANIE CABILAO ACIDELLA
           </a>
-          <div className="hidden md:flex gap-8 text-sm font-medium tracking-wide uppercase">
-            <a href="#services" className="hover:text-brand-accent transition-colors">Services</a>
-            <a href="#experience" className="hover:text-brand-accent transition-colors">Experience</a>
-            <a href="#work" className="hover:text-brand-accent transition-colors">Work</a>
-            <a href="#contact" className="hover:text-brand-accent transition-colors">Contact</a>
+          <div className="flex items-center gap-6">
+            <div className="hidden md:flex gap-8 text-sm font-medium tracking-wide uppercase">
+              <a href="#services" className="hover:text-brand-accent transition-colors">Services</a>
+              <a href="#experience" className="hover:text-brand-accent transition-colors">Experience</a>
+              <a href="#work" className="hover:text-brand-accent transition-colors">Work</a>
+              <a href="#contact" className="hover:text-brand-accent transition-colors">Contact</a>
+            </div>
+            <button
+              type="button"
+              onClick={(e) => { addRipple(e); toggle(); }}
+              aria-label="Toggle theme"
+              className="ripple size-10 rounded-full border border-brand-primary/10 bg-brand-surface flex items-center justify-center text-base hover:border-brand-accent transition-colors"
+            >
+              {theme === "dark" ? "☀️" : "🌙"}
+            </button>
           </div>
         </div>
       </nav>
+
 
       <header id="top" className="px-6 py-24 md:py-32 max-w-7xl mx-auto">
         <div className="max-w-3xl">
