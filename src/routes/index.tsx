@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import caseAutomation from "@/assets/case-automation.jpg";
 import caseTracker from "@/assets/case-tracker.jpg";
-import caseTracker from "@/assets/case-tracker.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
