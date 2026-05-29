@@ -28,6 +28,7 @@
   --color-brand-accent: var(--brand-accent);
   --color-brand-muted: var(--brand-muted);
   --color-brand-surface: var(--brand-surface);
+  --color-brand-secondary: var(--brand-secondary);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
