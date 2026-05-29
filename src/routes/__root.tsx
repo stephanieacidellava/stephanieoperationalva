@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Stephanie Acidella Porfolio" },
+      { name: "description", content: "Stephanie's Digital Hub is a professional portfolio website showcasing services, experience, and work." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Stephanie Acidella Porfolio" },
+      { property: "og:description", content: "Stephanie's Digital Hub is a professional portfolio website showcasing services, experience, and work." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Stephanie Acidella Porfolio" },
+      { name: "twitter:description", content: "Stephanie's Digital Hub is a professional portfolio website showcasing services, experience, and work." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/86114c9e-8aa5-49fd-b246-09c8ec43c752/id-preview-3813a06f--e1cc484c-d1aa-422e-a6f8-b68a0f7bc48b.lovable.app-1780038366782.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/86114c9e-8aa5-49fd-b246-09c8ec43c752/id-preview-3813a06f--e1cc484c-d1aa-422e-a6f8-b68a0f7bc48b.lovable.app-1780038366782.png" },
     ],
     links: [
       {
