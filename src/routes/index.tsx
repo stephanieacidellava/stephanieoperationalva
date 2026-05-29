@@ -116,7 +116,7 @@ function Index() {
           <div className="flex flex-wrap gap-4">
             <a
               href="#contact"
-              className="bg-brand-primary text-white px-8 py-4 rounded-full font-bold hover:bg-brand-accent transition-all"
+              onClick={addRipple} className="ripple bg-brand-primary text-brand-bg px-8 py-4 rounded-full font-bold hover:bg-brand-accent hover:scale-105 active:scale-95 transition-all"
             >
               Get in Touch
             </a>
@@ -128,7 +128,7 @@ function Index() {
         </div>
       </header>
 
-      <section id="services" className="py-24 bg-brand-surface border-y border-brand-primary/5">
+      <section id="services" className="reveal py-24 bg-brand-surface border-y border-brand-primary/5">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-brand-muted mb-12">
             Capabilities
@@ -150,7 +150,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="experience" className="py-24 max-w-7xl mx-auto px-6">
+      <section id="experience" className="reveal py-24 max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-12 gap-12">
           <div className="md:col-span-4">
             <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-brand-muted mb-4">
@@ -184,7 +184,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="work" className="py-24 bg-brand-primary text-white">
+      <section id="work" className="reveal py-24 bg-brand-primary text-white">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-sm font-mono font-bold uppercase tracking-widest opacity-50 mb-12">
             Case Studies
@@ -220,7 +220,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="py-24 max-w-7xl mx-auto px-6">
+      <section className="reveal py-24 max-w-7xl mx-auto px-6">
         <div className="bg-brand-accent/5 p-8 sm:p-12 rounded-3xl border border-brand-accent/10">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-2xl md:text-3xl font-medium italic leading-relaxed mb-8">
@@ -233,7 +233,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="contact" className="py-24 border-t border-brand-primary/5">
+      <section id="contact" className="reveal py-24 border-t border-brand-primary/5">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
           <div>
             <h2 className="text-4xl font-bold mb-8">Ready to automate your operations?</h2>
@@ -325,7 +325,7 @@ function Index() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-brand-primary text-white py-4 rounded-lg font-bold hover:bg-brand-accent transition-all"
+                onClick={addRipple} className="ripple w-full bg-brand-primary text-brand-bg py-4 rounded-lg font-bold hover:bg-brand-accent active:scale-[0.98] transition-all"
               >
                 Send Message
               </button>
