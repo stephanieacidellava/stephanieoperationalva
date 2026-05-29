@@ -72,11 +72,12 @@
 
 :root {
   --radius: 0.625rem;
-  --brand-bg: oklch(0.99 0 0);
-  --brand-primary: oklch(0.21 0.04 265);
-  --brand-accent: oklch(0.62 0.19 259);
-  --brand-muted: oklch(0.55 0.03 257);
-  --brand-surface: oklch(0.97 0.005 247);
+  --brand-bg: oklch(0.97 0.02 90);
+  --brand-primary: oklch(0.28 0.02 260);
+  --brand-accent: oklch(0.45 0.05 150);
+  --brand-secondary: oklch(0.68 0.06 10);
+  --brand-muted: oklch(0.5 0.02 260);
+  --brand-surface: oklch(0.94 0.025 85);
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
