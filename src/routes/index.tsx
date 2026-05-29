@@ -1,6 +1,54 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState, useRef } from "react";
 import caseAutomation from "@/assets/case-automation.jpg";
 import caseTracker from "@/assets/case-tracker.jpg";
+
+function useTheme() {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  useEffect(() => {
+    const stored = (localStorage.getItem("theme") as "light" | "dark" | null);
+    const initial = stored ?? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    setTheme(initial);
+  }, []);
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+  return { theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) };
+}
+
+function useReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in-view");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+function addRipple(e: React.MouseEvent<HTMLElement>) {
+  const target = e.currentTarget;
+  const rect = target.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const dot = document.createElement("span");
+  dot.className = "ripple-dot";
+  dot.style.width = dot.style.height = `${size}px`;
+  dot.style.left = `${e.clientX - rect.left - size / 2}px`;
+  dot.style.top = `${e.clientY - rect.top - size / 2}px`;
+  target.appendChild(dot);
+  setTimeout(() => dot.remove(), 650);
+}
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
