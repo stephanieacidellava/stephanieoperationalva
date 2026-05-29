@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import caseAutomation from "@/assets/case-automation.jpg";
 import caseTracker from "@/assets/case-tracker.jpg";
 
@@ -23,6 +24,47 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>(".reveal");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in-view");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+    els.forEach((el) => io.observe(el));
+
+    const onClick = (ev: MouseEvent) => {
+      const target = (ev.target as HTMLElement)?.closest(
+        "button, a.ripple",
+      ) as HTMLElement | null;
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const ripple = document.createElement("span");
+      ripple.className = "ripple-effect";
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${ev.clientX - rect.left - size / 2}px`;
+      ripple.style.top = `${ev.clientY - rect.top - size / 2}px`;
+      const prevPos = getComputedStyle(target).position;
+      if (prevPos === "static") target.style.position = "relative";
+      target.style.overflow = "hidden";
+      target.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 650);
+    };
+    document.addEventListener("click", onClick);
+
+    return () => {
+      io.disconnect();
+      document.removeEventListener("click", onClick);
+    };
+  }, []);
+
   return (
     <div className="bg-brand-bg text-brand-primary font-sans antialiased min-h-screen">
       <nav className="sticky top-0 z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-primary/5 px-6 py-4">
@@ -39,7 +81,7 @@ function Index() {
         </div>
       </nav>
 
-      <header id="top" className="px-6 py-24 md:py-32 max-w-7xl mx-auto">
+      <header id="top" className="reveal px-6 py-24 md:py-32 max-w-7xl mx-auto">
         <div className="max-w-3xl">
           <div className="inline-block px-3 py-1 bg-brand-accent/10 text-brand-accent text-xs font-mono font-bold rounded-full mb-6 italic">
             // OPERATIONS &amp; WORKFLOW SUPPORT VA
@@ -67,7 +109,7 @@ function Index() {
         </div>
       </header>
 
-      <section id="services" className="py-24 bg-brand-surface border-y border-brand-primary/5">
+      <section id="services" className="reveal py-24 bg-brand-surface border-y border-brand-primary/5">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-brand-muted mb-12">
             Capabilities
@@ -89,7 +131,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="experience" className="py-24 max-w-7xl mx-auto px-6">
+      <section id="experience" className="reveal py-24 max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-12 gap-12">
           <div className="md:col-span-4">
             <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-brand-muted mb-4">
@@ -123,7 +165,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="work" className="py-24 bg-brand-primary text-white">
+      <section id="work" className="reveal py-24 bg-brand-primary text-white">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-sm font-mono font-bold uppercase tracking-widest opacity-50 mb-12">
             Case Studies
@@ -172,7 +214,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="contact" className="py-24 border-t border-brand-primary/5">
+      <section id="contact" className="reveal py-24 border-t border-brand-primary/5">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
           <div>
             <h2 className="text-4xl font-bold mb-8">Ready to automate your operations?</h2>
