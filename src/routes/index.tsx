@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import caseAutomation from "@/assets/case-automation.jpg";
 import caseTracker from "@/assets/case-tracker.jpg";
 
@@ -184,7 +184,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="work" className="reveal py-24 bg-brand-primary text-white">
+      <section id="work" className="reveal py-24 bg-brand-primary text-brand-bg">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-sm font-mono font-bold uppercase tracking-widest opacity-50 mb-12">
             Case Studies
