@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import caseAutomation from "@/assets/case-automation.jpg";
 import caseTracker from "@/assets/case-tracker.jpg";
+import profilePhoto from "@/assets/profile.png";
 
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
