@@ -102,28 +102,45 @@ function Index() {
 
 
       <header id="top" className="px-6 py-24 md:py-32 max-w-7xl mx-auto">
-        <div className="max-w-3xl">
-          <div className="inline-block px-3 py-1 bg-brand-accent/10 text-brand-accent text-xs font-mono font-bold rounded-full mb-6 italic">
-            // OPERATIONS &amp; WORKFLOW SUPPORT VA
+        <div className="grid md:grid-cols-12 gap-12 items-center">
+          <div className="md:col-span-7 max-w-3xl">
+            <div className="inline-block px-3 py-1 bg-brand-accent/10 text-brand-accent text-xs font-mono font-bold rounded-full mb-6 italic">
+              // OPERATIONS &amp; WORKFLOW SUPPORT VA
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
+              Optimizing workflows through{" "}
+              <span className="text-brand-accent">automation</span> and precision data.
+            </h1>
+            <p className="text-lg text-brand-muted leading-relaxed mb-10 max-w-2xl">
+              I build structured validation trackers and automated monitoring systems that reduce
+              manual work and increase visibility across high-volume operational environments.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#contact"
+                onClick={addRipple} className="ripple bg-brand-primary text-brand-bg px-8 py-4 rounded-full font-bold hover:bg-brand-accent hover:scale-105 active:scale-95 transition-all"
+              >
+                Get in Touch
+              </a>
+              <div className="flex items-center gap-2 px-6 py-4 border border-brand-primary/10 rounded-full font-mono text-sm">
+                <span className="size-2 bg-green-500 rounded-full animate-pulse" />
+                Available for US/UK/AU shifts
+              </div>
+            </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
-            Optimizing workflows through{" "}
-            <span className="text-brand-accent">automation</span> and precision data.
-          </h1>
-          <p className="text-lg text-brand-muted leading-relaxed mb-10 max-w-2xl">
-            I build structured validation trackers and automated monitoring systems that reduce
-            manual work and increase visibility across high-volume operational environments.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="#contact"
-              onClick={addRipple} className="ripple bg-brand-primary text-brand-bg px-8 py-4 rounded-full font-bold hover:bg-brand-accent hover:scale-105 active:scale-95 transition-all"
-            >
-              Get in Touch
-            </a>
-            <div className="flex items-center gap-2 px-6 py-4 border border-brand-primary/10 rounded-full font-mono text-sm">
-              <span className="size-2 bg-green-500 rounded-full animate-pulse" />
-              Available for US/UK/AU shifts
+          <div className="md:col-span-5">
+            <div className="relative mx-auto max-w-md md:max-w-none">
+              <div className="absolute -inset-4 bg-gradient-to-br from-brand-accent/30 via-amber-200/20 to-transparent rounded-[2.5rem] blur-2xl" />
+              <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-brand-primary/10">
+                <img
+                  src={profilePhoto}
+                  alt="Stephanie Cabilao Acidella"
+                  width={1200}
+                  height={1600}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/10 via-transparent to-rose-200/10 mix-blend-soft-light" />
+              </div>
             </div>
           </div>
         </div>
