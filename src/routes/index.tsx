@@ -81,7 +81,7 @@ function Index() {
         </div>
       </nav>
 
-      <header id="top" className="px-6 py-24 md:py-32 max-w-7xl mx-auto">
+      <header id="top" className="reveal px-6 py-24 md:py-32 max-w-7xl mx-auto">
         <div className="max-w-3xl">
           <div className="inline-block px-3 py-1 bg-brand-accent/10 text-brand-accent text-xs font-mono font-bold rounded-full mb-6 italic">
             // OPERATIONS &amp; WORKFLOW SUPPORT VA
@@ -109,7 +109,7 @@ function Index() {
         </div>
       </header>
 
-      <section id="services" className="py-24 bg-brand-surface border-y border-brand-primary/5">
+      <section id="services" className="reveal py-24 bg-brand-surface border-y border-brand-primary/5">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-brand-muted mb-12">
             Capabilities
@@ -131,7 +131,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="experience" className="py-24 max-w-7xl mx-auto px-6">
+      <section id="experience" className="reveal py-24 max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-12 gap-12">
           <div className="md:col-span-4">
             <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-brand-muted mb-4">
@@ -165,7 +165,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="work" className="py-24 bg-brand-primary text-white">
+      <section id="work" className="reveal py-24 bg-brand-primary text-white">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-sm font-mono font-bold uppercase tracking-widest opacity-50 mb-12">
             Case Studies
@@ -214,7 +214,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="contact" className="py-24 border-t border-brand-primary/5">
+      <section id="contact" className="reveal py-24 border-t border-brand-primary/5">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
           <div>
             <h2 className="text-4xl font-bold mb-8">Ready to automate your operations?</h2>
