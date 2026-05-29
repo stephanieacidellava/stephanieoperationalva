@@ -24,6 +24,47 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>(".reveal");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in-view");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+    els.forEach((el) => io.observe(el));
+
+    const onClick = (ev: MouseEvent) => {
+      const target = (ev.target as HTMLElement)?.closest(
+        "button, a.ripple",
+      ) as HTMLElement | null;
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const ripple = document.createElement("span");
+      ripple.className = "ripple-effect";
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${ev.clientX - rect.left - size / 2}px`;
+      ripple.style.top = `${ev.clientY - rect.top - size / 2}px`;
+      const prevPos = getComputedStyle(target).position;
+      if (prevPos === "static") target.style.position = "relative";
+      target.style.overflow = "hidden";
+      target.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 650);
+    };
+    document.addEventListener("click", onClick);
+
+    return () => {
+      io.disconnect();
+      document.removeEventListener("click", onClick);
+    };
+  }, []);
+
   return (
     <div className="bg-brand-bg text-brand-primary font-sans antialiased min-h-screen">
       <nav className="sticky top-0 z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-primary/5 px-6 py-4">
