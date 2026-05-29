@@ -2,6 +2,8 @@
 @source "../src";
 @import "tw-animate-css";
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -19,6 +21,13 @@
  */
 
 @theme inline {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --color-brand-bg: var(--brand-bg);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-surface: var(--brand-surface);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -63,6 +72,11 @@
 
 :root {
   --radius: 0.625rem;
+  --brand-bg: oklch(0.99 0 0);
+  --brand-primary: oklch(0.21 0.04 265);
+  --brand-accent: oklch(0.62 0.19 259);
+  --brand-muted: oklch(0.55 0.03 257);
+  --brand-surface: oklch(0.97 0.005 247);
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
