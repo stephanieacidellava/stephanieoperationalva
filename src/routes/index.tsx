@@ -1,6 +1,54 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import caseAutomation from "@/assets/case-automation.jpg";
 import caseTracker from "@/assets/case-tracker.jpg";
+
+function useTheme() {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  useEffect(() => {
+    const stored = (localStorage.getItem("theme") as "light" | "dark" | null);
+    const initial = stored ?? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    setTheme(initial);
+  }, []);
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+  return { theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) };
+}
+
+function useReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in-view");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+function addRipple(e: React.MouseEvent<HTMLElement>) {
+  const target = e.currentTarget;
+  const rect = target.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const dot = document.createElement("span");
+  dot.className = "ripple-dot";
+  dot.style.width = dot.style.height = `${size}px`;
+  dot.style.left = `${e.clientX - rect.left - size / 2}px`;
+  dot.style.top = `${e.clientY - rect.top - size / 2}px`;
+  target.appendChild(dot);
+  setTimeout(() => dot.remove(), 650);
+}
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,6 +71,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { theme, toggle } = useTheme();
+  useReveal();
   return (
     <div className="bg-brand-bg text-brand-primary font-sans antialiased min-h-screen">
       <nav className="sticky top-0 z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-primary/5 px-6 py-4">
@@ -30,14 +80,25 @@ function Index() {
           <a href="#top" className="font-mono font-bold tracking-tighter text-base sm:text-xl">
             STEPHANIE CABILAO ACIDELLA
           </a>
-          <div className="hidden md:flex gap-8 text-sm font-medium tracking-wide uppercase">
-            <a href="#services" className="hover:text-brand-accent transition-colors">Services</a>
-            <a href="#experience" className="hover:text-brand-accent transition-colors">Experience</a>
-            <a href="#work" className="hover:text-brand-accent transition-colors">Work</a>
-            <a href="#contact" className="hover:text-brand-accent transition-colors">Contact</a>
+          <div className="flex items-center gap-6">
+            <div className="hidden md:flex gap-8 text-sm font-medium tracking-wide uppercase">
+              <a href="#services" className="hover:text-brand-accent transition-colors">Services</a>
+              <a href="#experience" className="hover:text-brand-accent transition-colors">Experience</a>
+              <a href="#work" className="hover:text-brand-accent transition-colors">Work</a>
+              <a href="#contact" className="hover:text-brand-accent transition-colors">Contact</a>
+            </div>
+            <button
+              type="button"
+              onClick={(e) => { addRipple(e); toggle(); }}
+              aria-label="Toggle theme"
+              className="ripple size-10 rounded-full border border-brand-primary/10 bg-brand-surface flex items-center justify-center text-base hover:border-brand-accent transition-colors"
+            >
+              {theme === "dark" ? "☀️" : "🌙"}
+            </button>
           </div>
         </div>
       </nav>
+
 
       <header id="top" className="px-6 py-24 md:py-32 max-w-7xl mx-auto">
         <div className="max-w-3xl">
@@ -55,7 +116,7 @@ function Index() {
           <div className="flex flex-wrap gap-4">
             <a
               href="#contact"
-              className="bg-brand-primary text-white px-8 py-4 rounded-full font-bold hover:bg-brand-accent transition-all"
+              onClick={addRipple} className="ripple bg-brand-primary text-brand-bg px-8 py-4 rounded-full font-bold hover:bg-brand-accent hover:scale-105 active:scale-95 transition-all"
             >
               Get in Touch
             </a>
@@ -67,7 +128,7 @@ function Index() {
         </div>
       </header>
 
-      <section id="services" className="py-24 bg-brand-surface border-y border-brand-primary/5">
+      <section id="services" className="reveal py-24 bg-brand-surface border-y border-brand-primary/5">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-brand-muted mb-12">
             Capabilities
@@ -89,7 +150,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="experience" className="py-24 max-w-7xl mx-auto px-6">
+      <section id="experience" className="reveal py-24 max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-12 gap-12">
           <div className="md:col-span-4">
             <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-brand-muted mb-4">
@@ -123,7 +184,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="work" className="py-24 bg-brand-primary text-white">
+      <section id="work" className="reveal py-24 bg-brand-primary text-brand-bg">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-sm font-mono font-bold uppercase tracking-widest opacity-50 mb-12">
             Case Studies
@@ -159,7 +220,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="py-24 max-w-7xl mx-auto px-6">
+      <section className="reveal py-24 max-w-7xl mx-auto px-6">
         <div className="bg-brand-accent/5 p-8 sm:p-12 rounded-3xl border border-brand-accent/10">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-2xl md:text-3xl font-medium italic leading-relaxed mb-8">
@@ -172,7 +233,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="contact" className="py-24 border-t border-brand-primary/5">
+      <section id="contact" className="reveal py-24 border-t border-brand-primary/5">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
           <div>
             <h2 className="text-4xl font-bold mb-8">Ready to automate your operations?</h2>
@@ -264,7 +325,7 @@ function Index() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-brand-primary text-white py-4 rounded-lg font-bold hover:bg-brand-accent transition-all"
+                onClick={addRipple} className="ripple w-full bg-brand-primary text-brand-bg py-4 rounded-lg font-bold hover:bg-brand-accent active:scale-[0.98] transition-all"
               >
                 Send Message
               </button>
